@@ -1,0 +1,32 @@
+{
+  "name": "@neon-css/styles",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Mateus Neiva <mateusneiva.dev@gmail.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "node ./__tests__/styles.test.js"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.10.5",
+    "@neon-css/theme": "^1.0.0",
+    "@stitches/core": "^1.2.8"
+  },
+  "devDependencies": {
+    "@neon-css/theme": "^1.0.0"
+  }
+}
