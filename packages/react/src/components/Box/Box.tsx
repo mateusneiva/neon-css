@@ -1,7 +1,7 @@
-import { Box as BoxCSS } from "@neon-css/styles";
+import { styled, BoxCSS } from '@neon-css/styles';
+
+const StyledBox = styled('div', BoxCSS);
 
 export function Box() {
-  return (
-    <div className={BoxCSS} style={{ width: "350px", height: "350px" }}></div>
-  );
+  return <StyledBox style={{ width: '350px', height: '350px' }}></StyledBox>;
 }
