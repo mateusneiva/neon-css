@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "watch": "lerna run watch --parallel", 
+    "watch": "lerna run watch --parallel",
     "storybook": "start-storybook -p 5555",
     "bootstrap": "lerna bootstrap --use-workspaces"
   },
@@ -24,6 +24,8 @@
     "@storybook/addon-links": "^6.5.15",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.15",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
     "babel-loader": "^9.1.0",
     "concurrently": "^7.6.0",
     "lerna": "^6.3.0",
