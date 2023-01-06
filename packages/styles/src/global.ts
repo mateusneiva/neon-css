@@ -1,17 +1,22 @@
 import { colors } from "@neon-css/theme";
-import { injectGlobal } from "@emotion/css";
+import { globalCss } from "@stitches/react";
 
-export const Global = injectGlobal`
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&display=swap');
+export const GlobalCSS = globalCss({
+  "@import":
+    "url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap')",
 
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Merriweather Sans",sans-serif;
-  }
+  "*": {
+    boxSizing: "border-box",
+    padding: 0,
+    margin: 0,
+    fontFamily: "Roboto, sans-serif",
+  },
 
-  body {
-    background: ${colors.grey[900]};
-  }
-`;
+  body: {
+    background: colors.grey[900],
+  },
+
+  "html, body, #root": {
+    width: "100%",
+  },
+});
