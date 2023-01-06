@@ -1,75 +1,71 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CenterDecorator } from "../../utils/CenterDecorator";
-import { Button } from "./Button";
-import { Alarm, IdentificationBadge } from "phosphor-react";
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import { Alarm, IdentificationBadge } from 'phosphor-react';
+
+import { Button, ButtonProps } from './Button';
+
+const iconArgType = {
+  options: ['noIcon', 'Alarm', 'IdentificationBadge'],
+  mapping: {
+    noIcon: null,
+    Alarm: <Alarm size={20} />,
+    IdentificationBadge: <IdentificationBadge size={20} />,
+  },
+  control: {
+    type: 'select',
+    labels: {
+      noIcon: 'No Icon',
+    },
+  },
+};
 
 export default {
-  title: "Form/Button",
+  title: 'Form/Button',
   component: Button,
-  decorators: [CenterDecorator],
   argTypes: {
-    children: { type: "string", defaultValue: "Example" },
+    css: { table: { disable: true } },
+    children: { type: 'string' },
 
     variant: {
-      options: ["contained", "outlined", "text"],
-      control: { type: "inline-radio" },
-      defaultValue: "contained",
+      options: ['contained', 'outlined', 'transparent'],
+      control: { type: 'inline-radio' },
     },
 
     shape: {
-      options: ["rounded", "circular", "square"],
-      control: { type: "inline-radio" },
-      defaultValue: "rounded",
+      options: ['rounded', 'circular', 'square'],
+      control: { type: 'inline-radio' },
     },
 
     size: {
-      options: ["sm", "md", "lg"],
-      control: { type: "inline-radio" },
-      defaultValue: "md",
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'inline-radio' },
     },
 
-    as: {
-      options: ["a", "button"],
-      control: { type: "inline-radio" },
-      defaultValue: "button",
-    },
+    disabled: { type: 'boolean' },
+    loading: { type: 'boolean' },
+    full: { type: 'boolean' },
 
-    disabled: {
-      type: "boolean",
-      defaultValue: false,
-    },
-
-    leftIcon: {
-      type: "select",
-      options: ["No Icon", "IdentificationBadge", "Alarm"],
-      mapping: {
-        "No Icon": "",
-        IdentificationBadge: <IdentificationBadge size={20} weight="fill" />,
-        Alarm: <Alarm size={20} weight="fill" />,
-      },
-    },
-
-    rightIcon: {
-      control: { type: "select" },
-      options: ["No Icon", "IdentificationBadge", "Alarm"],
-      mapping: {
-        "No Icon": "",
-        IdentificationBadge: <IdentificationBadge size={20} weight="fill" />,
-        Alarm: <Alarm size={18} weight="fill" />,
-      },
-    },
+    leftIcon: iconArgType,
+    rightIcon: iconArgType,
   },
-} as ComponentMeta<typeof Button>;
+  args: {
+    children: 'label',
+    variant: 'contained',
+    shape: 'rounded',
+    size: 'md',
+    disabled: false,
+    full: false,
+    loading: false,
+  },
+} as Meta;
 
-const Template: ComponentStory<typeof Button> = ({ ...rest }) => (
-  <Button {...rest} />
-);
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export const Contained = Template.bind({});
-Contained.args = { children: "contained", variant: "contained" };
+Contained.args = { variant: 'contained' };
 
 export const Outlined = Template.bind({});
-Outlined.args = { children: "outlined", variant: "outlined" };
+Outlined.args = { variant: 'outlined' };
 
-export const Text = Template.bind({});
-Text.args = { children: "text", variant: "text" };
+export const Transparent = Template.bind({});
+Transparent.args = { variant: 'transparent' };

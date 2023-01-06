@@ -1,56 +1,42 @@
-import React, { ReactNode } from "react";
-import { Button as ButtonCSS } from "@neon-css/styles";
+import React, { forwardRef } from 'react';
+import {
+  styled,
+  ButtonCSS,
+  ButtonLoadingCSS,
+  ButtonLabelCSS,
+} from '@neon-css/styles';
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "contained" | "outlined" | "text";
-  shape?: "rounded" | "circular" | "square";
-  size?: "sm" | "md" | "lg";
-  as?: "a" | "button";
+import { Spinner } from '../Spinner/Spinner';
 
-  disabled?: boolean;
+const StyledButton = styled('button', ButtonCSS);
+const ButtonLoading = styled('span', ButtonLoadingCSS);
+const ButtonLabel = styled('span', ButtonLabelCSS);
+
+export type ButtonProps = React.ComponentProps<typeof StyledButton> & {
   loading?: boolean;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
 };
 
-export function Button({
-  variant = "contained",
-  shape = "rounded",
-  size = "md",
-  as = "button",
-
-  leftIcon,
-  rightIcon,
-
-  disabled,
-  children,
-}: ButtonProps) {
-  if (as === "a") {
-    return (
-      <a
-        className={`
-        ${ButtonCSS.variant[variant]} 
-        ${ButtonCSS.shape[shape]} 
-        ${ButtonCSS.size[size]}
-        ${disabled ? ButtonCSS.disabled : ""}`}
-      >
-        {leftIcon}
-        {children}
-        {rightIcon}
-      </a>
-    );
-  }
-
+export const Button = forwardRef<
+  React.ElementRef<typeof StyledButton>,
+  ButtonProps
+>((props, forwardedRef) => {
   return (
-    <button
-      className={`
-      ${ButtonCSS.variant[variant]} 
-      ${ButtonCSS.shape[shape]} 
-      ${ButtonCSS.size[size]}
-      ${disabled ? ButtonCSS.disabled : ""}`}
-    >
-      {children}
-      {rightIcon}
-    </button>
+    <StyledButton ref={forwardedRef} {...props}>
+      {props.loading && (
+        <ButtonLoading>
+          <Spinner />
+        </ButtonLoading>
+      )}
+
+      <ButtonLabel>
+        {props.leftIcon}
+        <span>{props.children}</span>
+        {props.rightIcon}
+      </ButtonLabel>
+    </StyledButton>
   );
-}
+});
+
+Button.displayName = 'Button';
