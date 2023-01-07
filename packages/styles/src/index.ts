@@ -8,3 +8,4 @@ export * from './components/Button';
 export * from './components/IconButton';
 export * from './components/Box';
 export * from './components/Spinner';
+export * from './components/Checkbox';
