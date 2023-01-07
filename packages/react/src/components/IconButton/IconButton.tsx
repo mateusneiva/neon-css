@@ -19,3 +19,5 @@ export const IconButton = forwardRef<
     </StyledIconButton>
   );
 });
+
+IconButton.displayName = 'IconButton';

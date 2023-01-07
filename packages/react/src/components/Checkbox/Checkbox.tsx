@@ -43,3 +43,5 @@ export const Checkbox = forwardRef<
     </StyledCheckbox>
   );
 });
+
+Checkbox.displayName = 'Checkbox';
