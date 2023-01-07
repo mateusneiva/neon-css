@@ -1,4 +1,6 @@
 import React, { forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+
 import {
   styled,
   ButtonCSS,
@@ -13,6 +15,7 @@ const ButtonLoading = styled('span', ButtonLoadingCSS);
 const ButtonLabel = styled('span', ButtonLabelCSS);
 
 export type ButtonProps = React.ComponentProps<typeof StyledButton> & {
+  asChild?: boolean;
   loading?: boolean;
   leftIcon?: React.ReactElement;
   rightIcon?: React.ReactElement;
@@ -22,8 +25,10 @@ export const Button = forwardRef<
   React.ElementRef<typeof StyledButton>,
   ButtonProps
 >((props, forwardedRef) => {
+  const Component = props.asChild ? Slot : StyledButton;
+
   return (
-    <StyledButton ref={forwardedRef} {...props}>
+    <Component ref={forwardedRef} {...props}>
       {props.loading && (
         <ButtonLoading>
           <Spinner />
@@ -35,7 +40,7 @@ export const Button = forwardRef<
         <span>{props.children}</span>
         {props.rightIcon}
       </ButtonLabel>
-    </StyledButton>
+    </Component>
   );
 });
 

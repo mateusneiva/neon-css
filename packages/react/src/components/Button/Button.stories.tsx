@@ -24,6 +24,7 @@ export default {
   component: Button,
   argTypes: {
     css: { table: { disable: true } },
+    asChild: { table: { disable: true }},
     children: { type: 'string' },
 
     variant: {
