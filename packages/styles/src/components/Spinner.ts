@@ -19,6 +19,7 @@ export const SpinnerCSS = css({
 
   border: `2px solid $$baseColor`,
   borderTopColor: 'transparent',
+  borderLeftColor: 'transparent',
   borderRadius: '50%',
 
   animation: `${Spin} 600ms linear 0s infinite`,
